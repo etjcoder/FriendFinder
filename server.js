@@ -1,25 +1,69 @@
-
+var http = require("http");
+var fs = require("fs");
 var express = require("express");
 var path = require("path");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+var htmlRoutes = require("./app/routing/htmlRoutes")
+var friendsjs = require("./app/data/friends")
 
+var friendsArray = [{
+    name: "Jeffrey",
+    photo: "",
+    scores: [
+        5, 5, 5, 5, 5, 5, 5, 5, 5, 5
+    ]
+},
+{
+    name: "Molly",
+    photo: "",
+    scores: [
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ]
+},
+{
+    name: "Holly",
+    photo: "",
+    scores: [
+        3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+    ]
+}]
 
 app.use(express.urlencoded({ extended: true}));
-app.use(express.json());
-app.use(express.static('public'))
-app.use(express.static('routing'))
+app.use(express.static('app'));
 
+app.use(express.json());
 // var htmlRoutes = require("htmlRoutes.js");
+
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "app/public/home.html"))
+})
 
 app.get("/survey", function(req, res){
 
-    res.sendFile(path.join(__dirname, "/public/survey.html"))
+    res.sendFile(path.join(__dirname, "app/public/survey.html"))
 
 })
+
+// app.get("/api/friends", function(req, res){
+
+//     return res.json(friendsArray);
+
+// })
+
+app.get("/api/friends", function(req, res){
+
+    setTimeout(function(){
+    return res.json(friendsArr);
+}, 3000)
+
+})
+
 
 app.listen(PORT, function(){ 
 
     console.log("App listening on PORT " + PORT);
+    apples();
+    // console.log(friendsArr)
 })

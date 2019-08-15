@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friends Survey</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans|Caveat+Brush|Rammetto+One|Viga|Caveat&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Friends Survey</h1>
+            <h2>Fill out this survey and we will show you who you match closest with in terms of friends!</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <h4 class="card-title">Find your Recommended Friend!</h4>
+                    <div class="card-body">
+                        <button id="friend-button" class="btn btn-light calorie-button" value="1750"><span>Take the Survey</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    $("#friend-button").on("click", function(){
+
+        document.location.href = "/survey"
+    })
+    </script>
+</body>
+
+</html>
