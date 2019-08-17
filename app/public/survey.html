@@ -174,7 +174,10 @@
             console.log(currentURL);
             $.post(currentURL + "/api/friends", userData, function(data){
                 // console.log(data);
-                console.log(userData);
+                console.log(data);
+                if(data.success === true){
+                    alert("You've matched!")
+                }
             })
 
         })

@@ -36,6 +36,10 @@ module.exports = function (app) {
         var userName = userData.name
         var userScores = userData.scores;
 
+        var greatName = "applesName"
+        res.json({success: true})
+    })
+}
     //     var b = userScores.map(function(item) {
     //         return parseInt(item, 10);
     //     });
@@ -59,8 +63,3 @@ module.exports = function (app) {
     //     //     totalDifference = 0;
     //     //     console.log("Total Diff " + totalDifference);
     //     // }
-    })
-
-}
-
-
