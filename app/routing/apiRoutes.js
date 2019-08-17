@@ -1,19 +1,3 @@
-// Should create two routes
-
-// GET routes that displays the existing JSON looking at the objects of existing friends(?)
-
-// POST routes 'api/friends' that will be used to handle incoming survey results. This will route will also be used to handle the compatibility logic
-
-
-//This POST route will contain the logic that takes in the user's array of numbers and compares it with every single person in the array.
-//This will assign each answer in the user's array an value for the integer (ans1, ans2, etc)
-//Then this will be passed into a function that loops through the object array.
-//There will then be another for loop that will loop through each object's answer array. Comparing userans1 to compans1. Assigning that difference to a number. 
-//Each answer num differnce is added into a sumvalue.
-//That sum value will be placed into an object lining up with each user's name
-//We will then sort that array by descending order. then [0] index of that array will show the person whom you're matched up with. 
-//One final function will show the user's name/profile based on referencing the JSON object.
-//**BONUS****/ Add the user into the JSON array and have them upload an image/provide a photo link
 var friends = require("../data/friends.js")
 
 
@@ -24,8 +8,57 @@ module.exports = function (app) {
     });
 
     app.post("/api/friends", function (req, res) {
-        console.log("response from file:" + JSON.stringify(req.body))
-        console.log("Going to loop through: " + friendsArr)
+        // console.log("response from file:" + JSON.stringify(req.body))
+        // console.log("Going to loop through: " + friendsArr)
+
+        //Set user input data
+        var userData = req.body;
+        var userName = userData.name
+        var userScores = userData.scores;
+        var parsedArray = userScores.map(function (num) {
+            return parseInt(num, 10);
+        })
+        console.log(userName);
+        console.log(userScores);
+        console.log(parsedArray);
+
+        //set Friend Data to be compared with, start with empty variable and constructor
+        var matchComparisons = [];
+        function Friend(name, friendDif) {
+            this.name = name;
+            this.friendDif = friendDif;
+        }
+
+        //Here is primary logic, taking in all arrays from friendArr (from friend.js) and creating a differential score
+        setTimeout(function () {
+
+    
+            for (i = 0; i < friendsArr.length; i++) {
+
+                tempfriendArr = friendsArr[i].scores;
+                tempfriendName = friendsArr[i].name;
+                console.log("Looping with: " + tempfriendName + "'s answers are: " + tempfriendArr);
+
+                var differential = 0;
+                for (j = 0; j < 10; j++) {
+
+                    var sum = tempfriendArr[j] - parsedArray[j]
+                    if (sum < 0) {
+                        sum = -sum;
+                    }
+             
+                    differential += sum;
+            
+                    if (j === 9) {
+                        let friend = new Friend(tempfriendName, differential);
+                        (matchComparisons).push(friend);
+                    }
+                }
+
+            }
+            console.log("Unsorted comparisons:" + JSON.stringify(matchComparisons));
+            establishMatch(matchComparisons)
+        }, 2000);
 
         establishMatch = function (comparisonArr) {
             const arr = comparisonArr;
@@ -52,61 +85,14 @@ module.exports = function (app) {
             revisedArr = arr.sort(compare);
             setTimeout(function () {
                 console.log("sorted Array: " + JSON.stringify(revisedArr));
+                matchName = revisedArr[0].name;
+                // sendData(matchName);
             }, 1000)
+
         }
-
-
-
-        var userData = req.body;
-        var userName = userData.name
-        var userScores = userData.scores;
-
-        console.log(userName);
-        console.log(userScores);
-        var parsedArray = userScores.map(function (num) {
-            return parseInt(num, 10);
-        })
-        console.log(parsedArray);
-
-        var matchComparisons = []
-
-        function Friend(name, friendDif) {
-            this.name = name;
-            this.friendDif = friendDif;
-        }
-
-        setTimeout(function () {
-
-            // var differential = 0;
-            for (i = 0; i < 3; i++) {
-
-                tempfriendArr = friendsArr[i].scores;
-                tempfriendName = friendsArr[i].name;
-                console.log("Looping with: " + tempfriendName + "'s answers are: " + tempfriendArr);
-
-                var differential = 0;
-                for (j = 0; j < 10; j++) {
-
-                    var sum = tempfriendArr[j] - parsedArray[j]
-                    if (sum < 0) {
-                        sum = -sum;
-                    }
-                    // console.log(`Question #: ${i + 1} differential: ${sum}`);
-
-                    differential += sum;
-                    // console.log("new differential: " + differential);
-
-                    if (j === 9) {
-                        let friend = new Friend(tempfriendName, differential);
-                        (matchComparisons).push(friend);
-                    }
-                }
-
-            }
-            console.log("comparisons so far:" + JSON.stringify(matchComparisons));
-            establishMatch(matchComparisons)
-        }, 2000);
-        // res.json({ success: true })
+    setTimeout(function() { 
+        res.json({ success: true, revisedArr})
+    }, 10000)
     })
 }
 
