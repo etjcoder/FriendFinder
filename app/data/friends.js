@@ -3,22 +3,20 @@ var server = require("../../server")
 
 friendsArr = [{
     name: "Jeffrey",
-    photo: "",
-    scores: [
-        5, 5, 5, 5, 5, 5, 5, 5, 5, 5
-    ]
+    photo: "https://themcaa.org/wp-content/uploads/2015/12/blogpost-placeholder-100x100-300x300.png",
+    scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
 },
 {
     name: "Molly",
     photo: "",
-    scores: [
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-    ]
+    scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 },
 {
     name: "Holly",
     photo: "",
-    scores: [
-        3, 3, 3, 3, 3, 3, 3, 3, 3, 3
-    ]
+    scores: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 }]
+
+
+module.exports = friendsArr;
+//var friends 

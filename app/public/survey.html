@@ -32,108 +32,115 @@
     <div class="container">
 
         <div class="card-body">
-            <form action="/api/friends" method="POST" name="surveyresponse">
+            <form>
                 <div class="form-group">
+                    <h4>Your Information</h4>
+                    <h5>Your name:</h5>
+                    <input type="text" name="" id="name" class="form-control">
+                    <h6>Your photo:</h6>
+                    <input type="text" name="" id="photo" class="form-control">
+                    <hr>
+                    <hr>
                     <label for="friend-question-1"> On a scale of 1-5 how likely are you to speak to a stranger at a
                         bar?</label>
-                    <select class="form-control" id="friend-question-1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq1">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-2"> On a scale of 1-5 how much do you like to drink beer?</label>
-                    <select class="form-control" id="friend-question-2">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq2">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-3">On a scale of 1-5 how likely are you to go hiking in the
                         woods?</label>
-                    <select class="form-control" id="friend-question-3">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-4">On a scale of 1-5 how likely are you to go to the gym?</label>
-                    <select class="form-control" id="friend-question-4">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq4">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-5">On a scale of 1-5 how likely are you to play video games</label>
-                    <select class="form-control" id="friend-question-5">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq5">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-6">On a scale of 1-5 how likely are you to join a book club</label>
-                    <select class="form-control" id="friend-question-6">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq6">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-7">On a scale of 1-5 how popular were you in high school?</label>
-                    <select class="form-control" id="friend-question-7">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq7">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-8">On a scale of 1-5 how close are you with your family</label>
-                    <select class="form-control" id="friend-question-8">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq8">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-9">On a scale of 1-5 how outgoing are you on weeknights?</label>
-                    <select class="form-control" id="friend-question-9">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq9">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="friend-question-10">On a scale of 1-5 how much do you care about world events such as
                         politics?</label>
-                    <select class="form-control" id="friend-question-10">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select data-placeholder="" class="form-control user-selection" id="fq10">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <button class="btn btn-info" id="submit-res" type="submit">Submit</button>
@@ -145,15 +152,43 @@
     </div>
     <script type="text/javascript">
 
-        // $("submit-res").on("click", function () {
-        //     $.post("/api/friends", function (req, res) {
+        $("#submit-res").on("click", function(){
+            event.preventDefault();
+            var userData = {
+                name: $("#name").val(),
+                photo: $("#photo").val(),
+                scores: [
+                    $("#fq1").val(),
+                    $("#fq2").val(),
+                    $("#fq3").val(),
+                    $("#fq4").val(),
+                    $("#fq5").val(),
+                    $("#fq6").val(),
+                    $("#fq7").val(),
+                    $("#fq8").val(),
+                    $("#fq9").val(),
+                    $("#fq10").val(),
+                ]
+            }
+            var currentURL = window.location.origin;
+            console.log(currentURL);
+            $.post(currentURL + "/api/friends", userData, function(data){
+                // console.log(data);
+                console.log(userData);
+            })
 
-        //         var surveyResults = req.body;
+        })
 
-        //         console.log(surveyResults);
+            // // Using a RegEx Pattern to remove spaces from newCharacter
+            // // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+            // newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
 
-        //     });
-        // })
+
+            // characters.push(newCharacter);
+
+            // res.json(newCharacter);
+    
+
 
         // var testFriend = {
         //     name: "Jamal",

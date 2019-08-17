@@ -1,9 +1,9 @@
 // var server = require("../../server")
-var express = require("express");
-var path = require("path")
+// var express = require("express");
+// var path = require("path")
 
-var app = express();
-var server = require("../../server")
+// var app = express();
+// var server = require("../../server")
 //include two routes
 
 // GET route for /survey which displays the survey page (this will be a post request here)
@@ -16,7 +16,23 @@ var server = require("../../server")
 // }, 3000)
 // });
 
-apples = function(){
+var path = require("path");
 
-    console.log("I like apples")
+
+
+
+
+module.exports = function(app) {
+    // code here
+
+    app.get("/survey", function(req, res){
+
+        res.sendFile(path.join(__dirname, "/../public/survey.html"))
+    
+    })
+
+    app.use(function(req, res) {
+        res.sendFile(path.join(__dirname + "/../public/home.html"));
+    })
 }
+
