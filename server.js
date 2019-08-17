@@ -16,6 +16,34 @@ require("./app/routing/apiRoutes.js")(app);
 require("./app/routing/htmlRoutes.js")(app);
 
 
+// var testFriend = {
+//     name: "Jamal",
+//     image: "Placeholder image",
+//     answers: [5, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+// }
+
+// var answersArray = [1,2,3,4,5,1,2,3,4,5];
+
+// // for (i = 0; i < friendsArr.length; i ++) {
+    
+// // tempfriendArr = friendsarr[i];
+// // console.log(tempfriendArr);
+// var differential = 0;
+// for ( i = 0; i < 10; i++) {
+
+//     var sum = testFriend.answers[i] - answersArray[i]
+//     if (sum < 0) {
+//         sum = -sum;
+//     }
+//     console.log(`Question #: ${i+1} differential: ${sum}`);
+//     differential += sum;
+//     console.log("new differential: " + differential);
+// }
+
+// // }
+
+
+
 app.listen(PORT, function(){ 
 
     console.log("App listening on PORT " + PORT);

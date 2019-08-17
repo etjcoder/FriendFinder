@@ -19,32 +19,94 @@ var friends = require("../data/friends.js")
 
 module.exports = function (app) {
 
-    app.get("/api/friends", function(req, res){
+    app.get("/api/friends", function (req, res) {
         res.json(friendsArr);
     });
-    
-    app.post("/api/friends", function(req, res) {
+
+    app.post("/api/friends", function (req, res) {
         console.log("response from file:" + JSON.stringify(req.body))
         console.log("Going to loop through: " + friendsArr)
-        var difference = 0;
-        var bestMatch = {
-            name: "",
-            photo: "",
-            friendDifference: 1000
+
+        establishMatch = function (comparisonArr) {
+            const arr = comparisonArr;
+
+            function compare(a, b) {
+
+                let scoreA = parseInt(a.friendDif);
+                let scoreB = parseInt(b.friendDif);
+
+                let comparison = 0;
+
+                if (scoreA > scoreB) {
+                    comparison = 1
+                } else if (scoreA < scoreB) {
+                    comparison = -1
+                }
+                return comparison;
+            }
+            //     var bestMatch = {
+            //     name: "",
+            //     photo: "",
+            //     friendDifference: 1000
+            // }
+            revisedArr = arr.sort(compare);
+            setTimeout(function () {
+                console.log("sorted Array: " + JSON.stringify(revisedArr));
+            }, 1000)
         }
+
+
+
         var userData = req.body;
         var userName = userData.name
         var userScores = userData.scores;
 
         console.log(userName);
         console.log(userScores);
-        var parsedArray = userScores.map(function(num){
+        var parsedArray = userScores.map(function (num) {
             return parseInt(num, 10);
         })
         console.log(parsedArray);
 
-        var greatName = "applesName"
-        res.json({success: true})
+        var matchComparisons = []
+
+        function Friend(name, friendDif) {
+            this.name = name;
+            this.friendDif = friendDif;
+        }
+
+        setTimeout(function () {
+
+            // var differential = 0;
+            for (i = 0; i < 3; i++) {
+
+                tempfriendArr = friendsArr[i].scores;
+                tempfriendName = friendsArr[i].name;
+                console.log("Looping with: " + tempfriendName + "'s answers are: " + tempfriendArr);
+
+                var differential = 0;
+                for (j = 0; j < 10; j++) {
+
+                    var sum = tempfriendArr[j] - parsedArray[j]
+                    if (sum < 0) {
+                        sum = -sum;
+                    }
+                    // console.log(`Question #: ${i + 1} differential: ${sum}`);
+
+                    differential += sum;
+                    // console.log("new differential: " + differential);
+
+                    if (j === 9) {
+                        let friend = new Friend(tempfriendName, differential);
+                        (matchComparisons).push(friend);
+                    }
+                }
+
+            }
+            console.log("comparisons so far:" + JSON.stringify(matchComparisons));
+            establishMatch(matchComparisons)
+        }, 2000);
+        // res.json({ success: true })
     })
 }
 
@@ -54,15 +116,24 @@ module.exports = function (app) {
 //             answers: [5, 3, 4, 5, 6, 5, 4, 3, 2, 1]
 //         }
 
-//         var answersArray = [];
-//         var friendScore = 0;
+//         var answersArray = [1,2,3,4,5,1,2,3,4,5];
+
+//         for (i = 0; i < friendsArr.length; i ++) {
+
+//         tempfriendArr = friendsarr[i];
+//         console.log(tempfriendArr);
+//         for ( i = 0; i < 10; i++) {
+
+//         }
+
+//     }
+//          var friendScore = 0;
 //         function Friend(name, friendDif) {
 //             this.name = name;
 //             this.friendDif = friendDif;
 //         }
 //         newFriendArr = []
-//         $("#submit-res").on("click", function () {
-//             event.preventDefault();
+
 
 //             for (i = 0; i < 10; i++) {
 
@@ -115,26 +186,26 @@ module.exports = function (app) {
 
 
 
-    //     var b = userScores.map(function(item) {
-    //         return parseInt(item, 10);
-    //     });
-    //     userData = {
-    //         name: req.body.name,
-    //         photo: req.body.photo,
-    //         scores: b
-    //     }
+//         var b = userScores.map(function(item) {
+//             return parseInt(item, 10);
+//         });
+//         userData = {
+//             name: req.body.name,
+//             photo: req.body.photo,
+//             scores: b
+//         }
 
-    //     console.log("Name: " + userName);
-    //     console.log("User score " + userScores);
-        
-    //     var sum = b.reduce((a, b) => a + b, 0);
-    //     console.log("sum of users score" + sum);
-    //     // console.log("Bestfriend Match diffe " + bestMatch.friendDifference);
-    //     console.log("-----------------------------------")
+//         console.log("Name: " + userName);
+//         console.log("User score " + userScores);
 
-    //     // for (var i = 0; i < friends.length; i++) {
+//         var sum = b.reduce((a, b) => a + b, 0);
+//         console.log("sum of users score" + sum);
+//         // console.log("Bestfriend Match diffe " + bestMatch.friendDifference);
+//         console.log("-----------------------------------")
 
-    //     //     console.log(friends[i].name);
-    //     //     totalDifference = 0;
-    //     //     console.log("Total Diff " + totalDifference);
-    //     // }
+//         // for (var i = 0; i < friends.length; i++) {
+
+//         //     console.log(friends[i].name);
+//         //     totalDifference = 0;
+//         //     console.log("Total Diff " + totalDifference);
+//         // }
