@@ -20,12 +20,12 @@ var friends = require("../data/friends.js")
 module.exports = function (app) {
 
     app.get("/api/friends", function(req, res){
-        res.json(friendsArray);
+        res.json(friendsArr);
     });
     
     app.post("/api/friends", function(req, res) {
         console.log("response from file:" + JSON.stringify(req.body))
-       
+        console.log("Going to loop through: " + friendsArr)
         var difference = 0;
         var bestMatch = {
             name: "",

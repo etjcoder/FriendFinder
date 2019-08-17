@@ -1,5 +1,3 @@
-var http = require("http");
-var fs = require("fs");
 var bodyParser = require("body-parser")
 var express = require("express");
 var path = require("path");
