@@ -36,15 +36,23 @@ app.use(express.static('app'));
 app.use(express.json());
 // var htmlRoutes = require("htmlRoutes.js");
 
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "app/public/home.html"))
-})
+////////////////////////////////////////////////////////////////
+////////TEMPORARY This needs to be in htmlRoutes folder/////////
+////////////////////////////////////////////////////////////////
 
 app.get("/survey", function(req, res){
 
     res.sendFile(path.join(__dirname, "app/public/survey.html"))
 
 })
+
+app.get("/*", function(req, res) {
+    res.sendFile(path.join(__dirname, "app/public/home.html"))
+})
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+
 
 // app.get("/api/friends", function(req, res){
 
