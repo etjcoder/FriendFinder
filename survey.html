@@ -32,9 +32,10 @@
     <div class="container">
 
         <div class="card-body">
-            <form>
+            <form action="/api/friends" method="POST" name="surveyresponse">
                 <div class="form-group">
-                    <label for="friend-question-1"> On a scale of 1-5 how likely are you to speak to a stranger at a bar?</label>
+                    <label for="friend-question-1"> On a scale of 1-5 how likely are you to speak to a stranger at a
+                        bar?</label>
                     <select class="form-control" id="friend-question-1">
                         <option>1</option>
                         <option>2</option>
@@ -54,7 +55,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="friend-question-3">On a scale of 1-5 how likely are you to go hiking in the woods?</label>
+                    <label for="friend-question-3">On a scale of 1-5 how likely are you to go hiking in the
+                        woods?</label>
                     <select class="form-control" id="friend-question-3">
                         <option>1</option>
                         <option>2</option>
@@ -124,7 +126,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="friend-question-10">On a scale of 1-5 how much do you care about world events such as politics?</label>
+                    <label for="friend-question-10">On a scale of 1-5 how much do you care about world events such as
+                        politics?</label>
                     <select class="form-control" id="friend-question-10">
                         <option>1</option>
                         <option>2</option>
@@ -142,69 +145,86 @@
     </div>
     <script type="text/javascript">
 
-    var testFriend = {
-        name: "Jamal",
-        image: "Placeholder image",
-        answers: [ 5, 3, 4, 5, 6, 5, 4, 3, 2, 1]
-    }
+        // $("submit-res").on("click", function () {
+        //     $.post("/api/friends", function (req, res) {
 
-    var answersArray = [];
-    var friendScore = 0;
-    function Friend(name, friendDif) {
-        this.name = name;
-        this.friendDif = friendDif;
-    }
-    newFriendArr = []
-        $("#submit-res").on("click", function(){
-            event.preventDefault();
-          
-            for (i = 0; i < 10; i++){
+        //         var surveyResults = req.body;
 
-                numChoice = $(`#friend-question-${i+1}`).val()
-                console.log(`Option #${i}: ` + numChoice);
-                answersArray.push(parseInt(numChoice));
-            }
+        //         console.log(surveyResults);
 
-            setTimeout(function(){
+        //     });
+        // })
 
-               console.log(answersArray);
-            //    console.log(parseInt(answersArray))
-               compareFriends(answersArray);
-                
-            }, 2000)
+        // var testFriend = {
+        //     name: "Jamal",
+        //     image: "Placeholder image",
+        //     answers: [5, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+        // }
 
-            compareFriends = function(userArr) {
-                console.log(testFriend.answers);
-                console.log(userArr);
+        // var answersArray = [];
+        // var friendScore = 0;
+        // function Friend(name, friendDif) {
+        //     this.name = name;
+        //     this.friendDif = friendDif;
+        // }
+        // newFriendArr = []
+        // $("#submit-res").on("click", function () {
+        //     event.preventDefault();
 
-                // friendArr = parseInt(testFriend.answers);
-                
-                friendScore = 0;
-                
-                for (i = 0; i < 10; i++) {
+        //     for (i = 0; i < 10; i++) {
 
-                    var firstSum = testFriend.answers[i] - userArr[i]
-                    console.log(`Question #: ${i+1}: ` + `testFriend's answer was ${testFriend.answers[i]} and your answer was ${userArr[i]}`)
-                    friendScore += firstSum;
-                    
-                    console.log(`new friend score after Question #:${i+1} is ${friendScore}`);
-                    if (i === 9) {
-                        tallyFriendScore(friendScore, testFriend.name);
-                    }
-                }
-                // var firstSum = testFriend.answers[0] - userArr[0];
-                // console.log("Answer differential for question 1 = " + firstSum)
-            }
+        //         numChoice = $(`#friend-question-${i + 1}`).val()
+        //         console.log(`Option #${i}: ` + numChoice);
+        //         answersArray.push(parseInt(numChoice));
+        //     }
 
-            tallyFriendScore = function(score, id) {
-                    console.log(`Your final friend score with ${testFriend.name} is ${score}`)
-                    var id = new Friend(testFriend.name, score);
-                    console.log(id)
-                    newFriendArr.push(id);
-                    console.log(newFriendArr);
-                }
+        //     setTimeout(function () {
 
-        })
+        //         console.log(answersArray);
+        //         //    console.log(parseInt(answersArray))
+        //         compareFriends(answersArray);
+
+        //     }, 2000)
+
+        //     compareFriends = function (userArr) {
+        //         console.log(testFriend.answers);
+        //         console.log(userArr);
+
+        //         // friendArr = parseInt(testFriend.answers);
+
+        //         friendScore = 0;
+
+        //         for (i = 0; i < 10; i++) {
+
+        //             var firstSum = testFriend.answers[i] - userArr[i]
+        //             console.log(`Question #: ${i + 1}: ` + `testFriend's answer was ${testFriend.answers[i]} and your answer was ${userArr[i]}`)
+        //             friendScore += firstSum;
+
+        //             console.log(`new friend score after Question #:${i + 1} is ${friendScore}`);
+        //             if (i === 9) {
+        //                 tallyFriendScore(friendScore, testFriend.name);
+        //             }
+        //         }
+        //         // var firstSum = testFriend.answers[0] - userArr[0];
+        //         // console.log("Answer differential for question 1 = " + firstSum)
+        //     }
+
+        //     tallyFriendScore = function (score, id) {
+        //         console.log(`Your final friend score with ${testFriend.name} is ${score}`)
+        //         var id = new Friend(testFriend.name, score);
+        //         console.log(id)
+        //         newFriendArr.push(id);
+        //         console.log(newFriendArr);
+        //     }
+
+        // })
+
+
+
+
+
+
+
         //This POST route will contain the logic that takes in the user's array of numbers and compares it with every single person in the array.
         //This will assign each answer in the user's array an value for the integer (ans1, ans2, etc)
             //Then this will be passed into a function that loops through the object array.
@@ -217,8 +237,8 @@
 
 
 
-        </script>
-        
+    </script>
+
 
 </body>
 

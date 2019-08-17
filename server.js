@@ -5,6 +5,10 @@ var path = require("path");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+
+app.use(express.urlencoded({ extended: true}));
+app.use(express.static('app'));
+app.use(express.json());
 var htmlRoutes = require("./app/routing/htmlRoutes")
 var friendsjs = require("./app/data/friends")
 
@@ -30,10 +34,7 @@ var friendsArray = [{
     ]
 }]
 
-app.use(express.urlencoded({ extended: true}));
-app.use(express.static('app'));
 
-app.use(express.json());
 // var htmlRoutes = require("htmlRoutes.js");
 
 ////////////////////////////////////////////////////////////////
@@ -42,16 +43,33 @@ app.use(express.json());
 
 app.get("/survey", function(req, res){
 
-    res.sendFile(path.join(__dirname, "app/public/survey.html"))
+    res.sendFile(path.join(__dirname, "/survey.html"))
 
 })
 
-app.get("/*", function(req, res) {
+// apiRoutes
+app.get("/api/friends", function(req, res){
+
+    setTimeout(function(){
+    return res.json(friendsArray);
+}, 3000)
+});
+
+app.post("/api/friends", function (req, res) {
+
+    console.log(req)
+    // var surveyResults = req.body;
+
+    // console.log(surveyResults);
+
+});
+
+
+app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "app/public/home.html"))
 })
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
-
 
 
 // app.get("/api/friends", function(req, res){
@@ -60,13 +78,6 @@ app.get("/*", function(req, res) {
 
 // })
 
-app.get("/api/friends", function(req, res){
-
-    setTimeout(function(){
-    return res.json(friendsArr);
-}, 3000)
-
-})
 
 
 app.listen(PORT, function(){ 

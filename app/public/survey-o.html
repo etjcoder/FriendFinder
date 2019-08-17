@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friends Survey</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans|Caveat+Brush|Rammetto+One|Viga|Caveat&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="/style.css"> -->
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Friends Survey</h1>
+            <h2>Fill out this survey and we will show you who you match closest with in terms of friends!</h2>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="card-body">
+            <form action="/api/friends" method="POST">
+                <div class="form-group">
+                    <label for="friend-question-1"> On a scale of 1-5 how likely are you to speak to a stranger at a
+                        bar?</label>
+                    <select class="form-control" id="friend-question-1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-2"> On a scale of 1-5 how much do you like to drink beer?</label>
+                    <select class="form-control" id="friend-question-2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-3">On a scale of 1-5 how likely are you to go hiking in the
+                        woods?</label>
+                    <select class="form-control" id="friend-question-3">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-4">On a scale of 1-5 how likely are you to go to the gym?</label>
+                    <select class="form-control" id="friend-question-4">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-5">On a scale of 1-5 how likely are you to play video games</label>
+                    <select class="form-control" id="friend-question-5">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-6">On a scale of 1-5 how likely are you to join a book club</label>
+                    <select class="form-control" id="friend-question-6">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-7">On a scale of 1-5 how popular were you in high school?</label>
+                    <select class="form-control" id="friend-question-7">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-8">On a scale of 1-5 how close are you with your family</label>
+                    <select class="form-control" id="friend-question-8">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-9">On a scale of 1-5 how outgoing are you on weeknights?</label>
+                    <select class="form-control" id="friend-question-9">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="friend-question-10">On a scale of 1-5 how much do you care about world events such as
+                        politics?</label>
+                    <select class="form-control" id="friend-question-10">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <button class="btn btn-info" id="submit-res" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    </div>
+    <script type="text/javascript">
+
+        $.post("/api/friends", function (req, res) {
+            // req.body hosts is equal to the JSON post sent from the user
+            // This works because of our body parsing middleware
+            var surveyResults = req.body;
+
+            // // Using a RegEx Pattern to remove spaces from newCharacter
+            // // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+            // newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
+
+            console.log(surveyResults);
+
+            // characters.push(newCharacter);
+
+            // res.json(newCharacter);
+        });
+
+
+        // var testFriend = {
+        //     name: "Jamal",
+        //     image: "Placeholder image",
+        //     answers: [5, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+        // }
+
+        // var answersArray = [];
+        // var friendScore = 0;
+        // function Friend(name, friendDif) {
+        //     this.name = name;
+        //     this.friendDif = friendDif;
+        // }
+        // newFriendArr = []
+        // $("#submit-res").on("click", function () {
+        //     event.preventDefault();
+
+        //     for (i = 0; i < 10; i++) {
+
+        //         numChoice = $(`#friend-question-${i + 1}`).val()
+        //         console.log(`Option #${i}: ` + numChoice);
+        //         answersArray.push(parseInt(numChoice));
+        //     }
+
+        //     setTimeout(function () {
+
+        //         console.log(answersArray);
+        //         //    console.log(parseInt(answersArray))
+        //         compareFriends(answersArray);
+
+        //     }, 2000)
+
+        //     compareFriends = function (userArr) {
+        //         console.log(testFriend.answers);
+        //         console.log(userArr);
+
+        //         // friendArr = parseInt(testFriend.answers);
+
+        //         friendScore = 0;
+
+        //         for (i = 0; i < 10; i++) {
+
+        //             var firstSum = testFriend.answers[i] - userArr[i]
+        //             console.log(`Question #: ${i + 1}: ` + `testFriend's answer was ${testFriend.answers[i]} and your answer was ${userArr[i]}`)
+        //             friendScore += firstSum;
+
+        //             console.log(`new friend score after Question #:${i + 1} is ${friendScore}`);
+        //             if (i === 9) {
+        //                 tallyFriendScore(friendScore, testFriend.name);
+        //             }
+        //         }
+        //         // var firstSum = testFriend.answers[0] - userArr[0];
+        //         // console.log("Answer differential for question 1 = " + firstSum)
+        //     }
+
+        //     tallyFriendScore = function (score, id) {
+        //         console.log(`Your final friend score with ${testFriend.name} is ${score}`)
+        //         var id = new Friend(testFriend.name, score);
+        //         console.log(id)
+        //         newFriendArr.push(id);
+        //         console.log(newFriendArr);
+        //     }
+
+        // })
+
+
+
+
+
+
+
+        //This POST route will contain the logic that takes in the user's array of numbers and compares it with every single person in the array.
+        //This will assign each answer in the user's array an value for the integer (ans1, ans2, etc)
+            //Then this will be passed into a function that loops through the object array.
+                //There will then be another for loop that will loop through each object's answer array. Comparing userans1 to compans1. Assigning that difference to a number. 
+                    //Each answer num differnce is added into a sumvalue.
+                        //That sum value will be placed into an object lining up with each user's name
+                            //We will then sort that array by descending order. then [0] index of that array will show the person whom you're matched up with. 
+                                //One final function will show the user's name/profile based on referencing the JSON object.
+                                    //**BONUS****/ Add the user into the JSON array and have them upload an image/provide a photo link
+
+
+
+    </script>
+
+
+</body>
+
+</html>
