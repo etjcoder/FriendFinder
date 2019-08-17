@@ -16,8 +16,9 @@ module.exports = function (app) {
         var userName = userData.name
         var userScores = userData.scores;
         var parsedArray = userScores.map(function (num) {
-            return parseInt(num, 10);
+            return parseInt(num, 10);   
         })
+        var matchName = "";
         console.log(userName);
         console.log(userScores);
         console.log(parsedArray);
@@ -82,6 +83,7 @@ module.exports = function (app) {
             //     photo: "",
             //     friendDifference: 1000
             // }
+
             revisedArr = arr.sort(compare);
             setTimeout(function () {
                 console.log("sorted Array: " + JSON.stringify(revisedArr));
@@ -91,7 +93,7 @@ module.exports = function (app) {
 
         }
     setTimeout(function() { 
-        res.json({ success: true, revisedArr})
+        res.json({ success: true, matchName})
     }, 10000)
     })
 }
