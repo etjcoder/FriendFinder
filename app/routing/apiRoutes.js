@@ -19,15 +19,17 @@ module.exports = function (app) {
             return parseInt(num, 10);
         })
         var matchName = "";
+        var match = "";
         console.log(userName);
         console.log(userScores);
-        console.log(parsedArray);
+        // console.log(parsedArray);
 
         //set Friend Data to be compared with, start with empty variable and constructor
         var matchComparisons = [];
-        function Friend(name, friendDif) {
+        function Friend(name, friendDif, image) {
             this.name = name;
             this.friendDif = friendDif;
+            this.image = image;
         }
 
         //Here is primary logic, taking in all arrays from friendArr (from friend.js) and creating a differential score
@@ -38,7 +40,8 @@ module.exports = function (app) {
 
                 tempfriendArr = friendsArr[i].scores;
                 tempfriendName = friendsArr[i].name;
-                console.log("Looping with: " + tempfriendName + "'s answers are: " + tempfriendArr);
+                tempfriendimage = friendsArr[i].imageUrl;
+                // console.log("Looping with: " + tempfriendName + "'s answers are: " + tempfriendArr);
 
                 var differential = 0;
                 for (j = 0; j < 10; j++) {
@@ -51,7 +54,7 @@ module.exports = function (app) {
                     differential += sum;
 
                     if (j === 9) {
-                        let friend = new Friend(tempfriendName, differential);
+                        let friend = new Friend(tempfriendName, differential, tempfriendimage);
                         (matchComparisons).push(friend);
                     }
                 }
@@ -86,15 +89,22 @@ module.exports = function (app) {
 
             revisedArr = arr.sort(compare);
             setTimeout(function () {
-                console.log("sorted Array: " + JSON.stringify(revisedArr));
+                // console.log("sorted Array: " + JSON.stringify(revisedArr));
                 matchName = revisedArr[0].name;
+                matchImage = revisedArr[0].image;
+                match = {
+                    match: matchName,
+                    image: matchImage
+                }
+                console.log("Match found!");
+                console.log(match);
                 // sendData(matchName);
             }, 500)
 
         }
         setTimeout(function () {
-            res.json({ success: true, matchName })
-        }, 1000)
+            res.json({ success: true, match })
+        }, 2000)
     })
 }
 

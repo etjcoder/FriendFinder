@@ -17,7 +17,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
     <!-- Sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -28,8 +30,8 @@
         <div class="jumbotron">
             <h1>Friends Survey</h1>
             <h2>Fill out this survey and we will show you who you match closest with in terms of friends!</h2>
-            <button type="button" class="btn btn-primary" data-toggle="modal" onclick="showModal()" data-target="#exampleModal"
-                id="match-button">
+            <button type="button" class="btn btn-primary" data-toggle="modal" onclick="showModal()"
+                data-target="#exampleModal" id="match-button">
                 Your Match is ready!
             </button>
         </div>
@@ -44,17 +46,21 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel">Your Match!</h5>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div class="card" style="width: 18rem;">
+                            <img class="match-image" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="match-title">Card title</h5>
+                                <p class="match-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+
                     </div>
                 </div>
             </div>
@@ -213,9 +219,20 @@
                 console.log(data);
                 if (data.success === true) {
                     console.log(data);
-                    alert("You've matched! with " + data.matchName + "Please click the View Match button at the top!")
+                    alert("You've matched! with " + data.match.match + "Please click the View Match button at the top!")
+                    // var matchDiv1 = $("<div>");
+                    //     var imageDiv1 = ("<img>");
+                    //     $(imageDiv1).attr("src", match.image);
+                    //     $(matchDiv1).prepend(imageDiv1);
+                    //     var titleDiv1 = $("<h4>");
+                    //         $(titleDiv1).text(data.match.match);
+                    //         $(matchDiv1).prepend(titleDiv1);
+                    //         $("#")
+                    
                     $('#match-button').show();
                     // $("#match-button").modal("show");
+                    $(".match-title").text("Your match is with: " + data.match.match)
+                    $(".match-image").attr("src", data.match.image);
                 }
             })
 
@@ -224,6 +241,10 @@
         function showModal() {
             $("#match-button").modal("show");
         }
+
+        // $("#match-image")
+        // $("#match-title")
+        // $("#match-text")
 
         // $('#myModal').on('shown.bs.modal', function () {
         //     $('#myInput').trigger('focus')
