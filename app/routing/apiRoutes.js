@@ -16,7 +16,7 @@ module.exports = function (app) {
         var userName = userData.name
         var userScores = userData.scores;
         var parsedArray = userScores.map(function (num) {
-            return parseInt(num, 10);   
+            return parseInt(num, 10);
         })
         var matchName = "";
         console.log(userName);
@@ -33,7 +33,7 @@ module.exports = function (app) {
         //Here is primary logic, taking in all arrays from friendArr (from friend.js) and creating a differential score
         setTimeout(function () {
 
-    
+
             for (i = 0; i < friendsArr.length; i++) {
 
                 tempfriendArr = friendsArr[i].scores;
@@ -47,9 +47,9 @@ module.exports = function (app) {
                     if (sum < 0) {
                         sum = -sum;
                     }
-             
+
                     differential += sum;
-            
+
                     if (j === 9) {
                         let friend = new Friend(tempfriendName, differential);
                         (matchComparisons).push(friend);
@@ -59,7 +59,7 @@ module.exports = function (app) {
             }
             console.log("Unsorted comparisons:" + JSON.stringify(matchComparisons));
             establishMatch(matchComparisons)
-        }, 2000);
+        }, 1000);
 
         establishMatch = function (comparisonArr) {
             const arr = comparisonArr;
@@ -89,12 +89,12 @@ module.exports = function (app) {
                 console.log("sorted Array: " + JSON.stringify(revisedArr));
                 matchName = revisedArr[0].name;
                 // sendData(matchName);
-            }, 1000)
+            }, 500)
 
         }
-    setTimeout(function() { 
-        res.json({ success: true, matchName})
-    }, 10000)
+        setTimeout(function () {
+            res.json({ success: true, matchName })
+        }, 1000)
     })
 }
 

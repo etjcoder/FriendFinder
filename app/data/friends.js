@@ -4,18 +4,23 @@ var server = require("../../server")
 friendsArr = [{
     name: "Jeffrey",
     photo: "https://themcaa.org/wp-content/uploads/2015/12/blogpost-placeholder-100x100-300x300.png",
-    scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+    scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+    imageUrl: 'https://picsum.photos/id/950/200/200'
 },
 {
     name: "Molly",
     photo: "",
-    scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    imageUrl: 'https://picsum.photos/id/950/200/200'
 },
 {
     name: "Holly",
     photo: "",
-    scores: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
-}]
+    scores: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+    imageUrl: 'https://picsum.photos/id/950/200/200'
+},
+
+]
 
 
 module.exports = friendsArr;
