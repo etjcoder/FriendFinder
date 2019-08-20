@@ -18,18 +18,30 @@ module.exports = function (app) {
         var parsedArray = userScores.map(function (num) {
             return parseInt(num, 10);
         })
+        var userDescription = userData.description;
+        var userImage = userData.image;
         var matchName = "";
         var match = "";
         console.log(userName);
         console.log(userScores);
         // console.log(parsedArray);
 
+        function FriendforArray(name, description, scores, image) {
+            this.name = name;
+            this.description = description;
+            this.scores = scores;
+            this.imageUrl = image;
+        }
+
+        // let newFriendData = new FriendforArray(userName, userDescription, parsedArray, userImage);
+        // (friendsArr).push(newFriendData);
         //set Friend Data to be compared with, start with empty variable and constructor
         var matchComparisons = [];
-        function Friend(name, friendDif, image) {
+        function Friend(name, friendDif, image, description) {
             this.name = name;
             this.friendDif = friendDif;
             this.image = image;
+            this.description = description;
         }
 
         //Here is primary logic, taking in all arrays from friendArr (from friend.js) and creating a differential score
@@ -41,6 +53,7 @@ module.exports = function (app) {
                 tempfriendArr = friendsArr[i].scores;
                 tempfriendName = friendsArr[i].name;
                 tempfriendimage = friendsArr[i].imageUrl;
+                tempfrienddescription = friendsArr[i].description;
                 // console.log("Looping with: " + tempfriendName + "'s answers are: " + tempfriendArr);
 
                 var differential = 0;
@@ -54,7 +67,7 @@ module.exports = function (app) {
                     differential += sum;
 
                     if (j === 9) {
-                        let friend = new Friend(tempfriendName, differential, tempfriendimage);
+                        let friend = new Friend(tempfriendName, differential, tempfriendimage, tempfrienddescription);
                         (matchComparisons).push(friend);
                     }
                 }
@@ -92,9 +105,11 @@ module.exports = function (app) {
                 // console.log("sorted Array: " + JSON.stringify(revisedArr));
                 matchName = revisedArr[0].name;
                 matchImage = revisedArr[0].image;
+                matchDescription = revisedArr[0].description;
                 match = {
                     match: matchName,
-                    image: matchImage
+                    image: matchImage,
+                    description: matchDescription
                 }
                 console.log("Match found!");
                 console.log(match);
@@ -103,6 +118,9 @@ module.exports = function (app) {
 
         }
         setTimeout(function () {
+            let newFriendData = new FriendforArray(userName, userDescription, parsedArray, userImage);
+            (friendsArr).push(newFriendData);
+            console.log("New Friends Array:" + JSON.stringify(friendsArr))
             res.json({ success: true, match })
         }, 2000)
     })

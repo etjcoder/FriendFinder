@@ -52,10 +52,9 @@
                         <div class="card" style="width: 18rem;">
                             <img class="match-image" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="match-title">Card title</h5>
-                                <p class="match-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="match-title"></h5>
+                                <p class="match-text"></p>
+                                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                             </div>
                         </div>
                     </div>
@@ -79,6 +78,7 @@
                     <h6>Your photo:</h6>
                     <input type="text" name="" id="photo" class="form-control">
                     <hr>
+                    <input type="text" name="" id="description" class="form-control">
                     <hr>
                     <label for="friend-question-1"> On a scale of 1-5 how likely are you to speak to a stranger at a
                         bar?</label>
@@ -198,6 +198,7 @@
             event.preventDefault();
             var userData = {
                 name: $("#name").val(),
+                description: $("#description").val(),
                 photo: $("#photo").val(),
                 scores: [
                     $("#fq1").val(),
@@ -219,7 +220,7 @@
                 console.log(data);
                 if (data.success === true) {
                     console.log(data);
-                    alert("You've matched! with " + data.match.match + "Please click the View Match button at the top!")
+                    alert("You've matched with " + data.match.match + "! Please click the View Match button at the top!")
                     // var matchDiv1 = $("<div>");
                     //     var imageDiv1 = ("<img>");
                     //     $(imageDiv1).attr("src", match.image);
@@ -233,6 +234,7 @@
                     // $("#match-button").modal("show");
                     $(".match-title").text("Your match is with: " + data.match.match)
                     $(".match-image").attr("src", data.match.image);
+                    $(".match-text").html(data.match.description);
                 }
             })
 
